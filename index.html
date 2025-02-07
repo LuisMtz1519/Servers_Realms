@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vindux Servers</title>
+    <link rel="stylesheet" href="assets/css/estilos.css" />
+    <link rel="icon" href="assets/img/Vinduxlogo.png" />
+    <meta name="author" content="luismtzC" />
+    <meta name="Description" content="Pantalla Principal del Server" />
+    <script
+      src="https://kit.fontawesome.com/54e04a308d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo-header">
+        <img src="assets/img/Vinduxlogo.png" alt="" srcset="" />
+        <div class="title-menu">
+          <h1>Vindux</h1>
+        </div>
+      </div>
+      <div class="nav-menu">
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+          <i class="menu-icono"
+            ><img src="assets/img/hamburguesa.png" alt=""
+          /></i>
+        </label>
+        <ul>
+          <li><a href="Servers.html" class="link-nav">Servers</a></li>
+          <li>
+            <a href="zonedownload.html" class="link-nav">Zona De Descarga</a>
+          </li>          <li>
+            <a href="realmsgtp.html" class="link-nav">GTP-REALMS</a>
+          </li>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="containerprinc">
+        <br>
+        <img id="titlemain" src="/assets/img/GTP_SERVER MC.png" alt="Title Main">
+        <br>
+        <div class="widgets">
+            <div class="weather-container">
+                <h1>Clima</h1>
+                <br>
+                <div id="galeana" class="weather-card">
+                  <h2>Galeana, N.L.</h2>
+                  <p id="galeana-temp"></p>
+                  <p id="galeana-desc"></p>
+                </div>
+                <div id="monterrey" class="weather-card">
+                  <h2>Monterrey, N.L.</h2>
+                  <p id="monterrey-temp"></p>
+                  <p id="monterrey-desc"></p>
+                </div>
+            </div>
+            <div class="countdown-container">
+                <h1>Hora Actual</h1>
+                <p id="countdown-timer"></p>
+                <br>
+                <img id="Clock" src="/assets/img/Clock_JE3_BE3.webp" alt="">
+            </div>
+            <!--<div class="Players-container">
+                <h1>Jugadores Activos</h1>
+            </div>-->
+            
+        </div>
+          <script src="script.js"></script>
+    </div>
+    <!--<div class="container">
+      <div class="cards">
+        <img src="assets/img/Windows-Update.png" />
+        <h4>Novedades</h4>
+        <p>Mantente enterado del Mantenimiento del server y de la pagina</p>
+        <a href="update.html">Mas Informacion</a>
+      </div>
+
+      <div class="cards">
+        <img src="assets/img/proyecto.png" />
+        <h4>Proyectos</h4>
+        <p>Proyectos que estan actualmete Activos</p>
+        <a href="update.html">Mas Informacion</a>
+      </div>
+
+      <div class="cards">
+        <img src="assets/img/aternos.ico" />
+        <h4>Servers o Realms</h4>
+        <p>Lista de Servidores en los cuales se jugaran</p>
+        <a href="Servers.html">Mas Informacion</a>
+      </div>
+
+      <div class="cards">
+        <img src="assets/img/media.png" />
+        <h4>Media</h4>
+        <p>Galeria de videos clasicos antiguos de la pagina y del server</p>
+        <a href="media.html">Mas Informacion</a>
+      </div>
+    </div>-->
+    <footer class="pie_pag">
+      <div class="group1">
+        <div class="box">
+          <figure>
+            <a href="">
+              <img src="assets/img/Vinduxlogo.png" />
+            </a>
+          </figure>
+        </div>
+        <div class="box">
+          <h2>Sobre Nosotros</h2>
+          <p>Bienvenido a la pagina</p>
+          <p>Vindux S.A</p>
+        </div>
+        <div class="box">
+          <h2>Contactanos</h2>
+          <div class="redes">
+            <a href="#" class="fa fa-whatsapp"></a>
+            <a href="#" class="fa fa-github"></a>
+          </div>
+        </div>
+      </div>
+      <div class="group2">
+        <small>&copy; 2023 Todos los derechos Reservados Vindux</small>
+      </div>
+    </footer>
+    <script >
+      const apiKey = '122bbc7b341c6b707186946abde3476c'; // Reemplaza con tu API Key gratuita
+
+// Función para obtener y mostrar el clima
+function fetchWeather(city, tempElementId, descElementId) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=es&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById(tempElementId).textContent = `Temperature: ${data.main.temp}°C`;
+      document.getElementById(descElementId).textContent = `Condition: ${data.weather[0].description}`;
+    })
+    .catch(error => {
+      console.error(`Error fetching weather for ${city}:`, error);
+    });
+}
+
+// Consultar clima para Galeana y Monterrey
+fetchWeather('Galeana, MX', 'galeana-temp', 'galeana-desc');
+fetchWeather('Monterrey, MX', 'monterrey-temp', 'monterrey-desc');
+
+    </script>
+<script>
+  function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const amPm = hours >= 12 ? 'PM' : 'AM';
+
+      // Convertir formato 24h a 12h
+      hours = hours % 12 || 12;
+
+      document.getElementById("countdown-timer").innerHTML = `${hours}:${minutes}:${seconds} ${amPm}`;
+  }
+
+  // Actualiza la hora cada segundo
+  setInterval(updateTime, 1000);
+  updateTime(); // Llamado inicial
+</script>
+
+
+</html>
