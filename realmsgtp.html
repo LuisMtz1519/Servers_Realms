@@ -55,13 +55,20 @@
                   <p id="monterrey-desc"></p>
                 </div>
             </div>
-            <div class="countdown-container">
-                <h1>Final Realm</h1>
-                <h1>Cuenta regresiva</h1>
-                <p id="countdown-timer"></p>
-                <br>
-                <img id="Clock" src="./assets/img/Clock_JE3_BE3.webp" alt="">
-            </div>
+            <!--<div class="countdown-container">
+              <h1>Realm Final</h1>
+              <h1>Cuenta regresiva</h1>
+              <p id="countdown-timer"></p>
+              <br>
+              <img id="Clock" src="./assets/img/Clock_JE3_BE3.webp" alt="">
+          </div>-->
+          <div class="countdown-container">
+              <h1>Servicio PostReady</h1>
+              <h1>Cuenta regresiva</h1>
+              <p id="countdown-postready"></p>
+              <br>
+              <img id="Clock_postready" src="./assets/img/PostReady.png" alt="">
+          </div>
             <!--<div class="Players-container">
                 <h1>Jugadores Activos</h1>
             </div>-->
@@ -199,5 +206,31 @@ fetchWeather('Monterrey, MX', 'monterrey-temp', 'monterrey-desc');
     
       // Actualiza la cuenta regresiva cada segundo
       setInterval(updateCountdown, 1000);</script>
+
+
+      <!--CUTDAWNPOSTREADY-->
+      <script>  // Define la fecha y hora objetivo
+        const PStargetDate = new Date("2025-02-24T23:59:59").getTime();
+      
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const timeLeft = PStargetDate - now;
+      
+          if (timeLeft < 0) {
+            document.getElementById("countdown-postready").innerHTML = "¡Tiempo agotado!";
+            return;
+          }
+      
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      
+          document.getElementById("countdown-postready").innerHTML = 
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      
+        // Actualiza la cuenta regresiva cada segundo
+        setInterval(updateCountdown, 1000);</script>
 </body>
 </html>
